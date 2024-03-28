@@ -3,6 +3,7 @@ import csv
 from jinja2 import Environment, PackageLoader, select_autoescape
 from datetime import datetime
 import os
+import csscompressor
 
 env = Environment(
     loader=PackageLoader("app"),
@@ -25,7 +26,13 @@ with open(args.file, 'r', encoding='utf-8') as file:
     next(reader)
     # rendered_template = template.render({'rows': reader})
     rows = [[datetime.strptime(row[0], '%H:%M')] + row[1:] for row in reader]
-    rendered_template = template.render({'rows': rows})
+
+    with open('style.css', 'r', encoding="utf-8") as file:
+        css = file.read()
+    minified_css = csscompressor.compress(css)
+
+    rendered_template = template.render({'rows': rows, 'style': minified_css})
+
 
 with open(output_filename, 'w', encoding='utf-8') as html_file:
     html_file.write(rendered_template)
