@@ -3,7 +3,7 @@ import csv
 from jinja2 import Environment, PackageLoader, select_autoescape
 from datetime import datetime
 import os
-import csscompressor
+import rcssmin
 
 env = Environment(
     loader=PackageLoader("app"),
@@ -29,9 +29,9 @@ with open(args.file, 'r', encoding='utf-8') as file:
 
     with open('style.css', 'r', encoding="utf-8") as file:
         css = file.read()
-    minified_css = csscompressor.compress(css)
+        minified_css = rcssmin.cssmin(css)
 
-    rendered_template = template.render({'rows': rows, 'style': minified_css})
+        rendered_template = template.render({'rows': rows, 'style': minified_css})
 
 
 with open(output_filename, 'w', encoding='utf-8') as html_file:
