@@ -3,3 +3,4 @@ node_modules
 *.csv
 output.html
 __pycache__
+output/*.html
