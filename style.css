@@ -24,7 +24,7 @@
 html, body {
   margin: 0;
   padding: 0;
-  height: 100vh;
+  height: 98vh;
 }
 
 body {
@@ -40,6 +40,37 @@ body {
 main {
   margin-inline: auto;
   padding: 1rem;
+  margin-top: 4rem;
+}
+
+h1 {
+  line-height: 1;
+}
+
+header {
+  position: fixed;
+  top: 2vmin;
+  left: 2vmin;
+}
+
+.color-guide {
+  list-style: none;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1rem;
+}
+
+.color-guide > li {
+  display: flex;
+  gap: .5rem;
+  align-items: center;
+  margin-bottom: .5rem;
+}
+
+.color-box {
+  width: 2rem;
+  height: 2rem;
+  border: var(--border);
 }
 
 ol {
@@ -64,7 +95,7 @@ ol:after {
   z-index: -1;
 }
 
-li {
+ol > li {
   position: relative;
   display: grid;
   grid-template-areas: "top"
@@ -74,11 +105,11 @@ li {
   width: 2rem;
 }
 
-li:hover .content {
+ol > li:hover .content {
   display: block;
 }
 
-li > * {
+ol > li > * {
   position: absolute;
 }
 

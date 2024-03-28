@@ -9,12 +9,41 @@
 </head>
 
 <body>
+  <header>
+    <ul class="color-guide">
+      <li>
+        <div class="color-box" style="background-color: var(--color-speaker1);">
+        </div>
+        <span>Speaker 1</span>
+      </li>
+      <li>
+        <div class="color-box" style="background-color: var(--color-speaker2);">
+        </div>
+        <span>Speaker 2</span>
+      </li>
+      <li>
+        <div class="color-box" style="background-color: var(--color-question);">
+        </div>
+        <span>Question</span>
+      </li>
+      <li>
+        <div class="color-box" style="background-color: var(--color-action);">
+        </div>
+        <span>Run/Action</span>
+      </li>
+      <li>
+        <div class="color-box" style="background-color: var(--color-narrative);">
+        </div>
+        <span>Claim/Narrative</span>
+      </li>
+    </ul>
+  </header>
   <main>
     <ol class="timeline">
       {% for row in rows %}
       <li class="{% if row[0].minute == 0 %}separator{% endif %}">
         {% if row[0].minute == 0 %}
-          <time>{{ row[0].strftime('%H:%M') }}</time>
+        <time>{{ row[0].strftime('%H:%M') }}</time>
         {% endif %}
         {% if row[1] %}
         <span class="speaker-{{ row[1] }}">
