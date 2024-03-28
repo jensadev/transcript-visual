@@ -1,2 +1,5 @@
 .env
 node_modules
+*.csv
+output.html
+__pycache__
