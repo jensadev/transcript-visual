@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="sv">
 
 <head>
   <meta charset="UTF-8">
@@ -14,35 +14,40 @@
       <li>
         <div class="color-box" style="background-color: var(--color-speaker1);">
         </div>
-        <span>Speaker 1</span>
+        <span>Talare 1</span>
       </li>
       <li>
         <div class="color-box" style="background-color: var(--color-speaker2);">
         </div>
-        <span>Speaker 2</span>
+        <span>Talare 2</span>
       </li>
       <li>
         <div class="color-box" style="background-color: var(--color-question);">
         </div>
-        <span>Question</span>
+        <span>Fråga</span>
+      </li>
+      <li>
+        <div class="color-box" style="background-color: var(--color-error);">
+        </div>
+        <span>Error</span>
       </li>
       <li>
         <div class="color-box" style="background-color: var(--color-action);">
         </div>
-        <span>Run/Action</span>
+        <span>Exekvera / Handling</span>
       </li>
       <li>
         <div class="color-box" style="background-color: var(--color-narrative);">
         </div>
-        <span>Claim/Narrative</span>
+        <span>Påstående / Narrativ</span>
       </li>
     </ul>
   </header>
   <main>
     <ol class="timeline">
       {% for row in rows %}
-      <li class="{% if row[0].minute == 0 %}separator{% endif %}">
-        {% if row[0].minute == 0 %}
+        <li class="{% if row[2] == 'Separator' %}separator{% endif %}">
+        {% if row[2] == 'Separator' %}
         <time>{{ row[0].strftime('%H:%M') }}</time>
         {% endif %}
         {% if row[1] %}
@@ -50,13 +55,14 @@
           {{ row[1] }}
         </span>
         {% endif %}
-        {% if row[2] %}
+        {% if row[2] and row[2] != "Separator" %}
         <span class="type {% if row[2] == 'Fråga' %}question
           {% elif row[2] == 'Exekverar' %}run
           {% elif row[2] == 'Påstående' %}claim
           {% elif row[2] == 'Error' %}error
           {% endif %}">{{ row[2] }}</span>
         {% endif %}
+        {% if row[2] != 'Separator' %}
         <div class="content">
           <time>{{ row[0].strftime('%H:%M') }}</time>
           <p class="expression">{{ row[3] }}</p>
@@ -64,6 +70,7 @@
           <p class="interpretation">{{ row[5] }}</p>
           <p class="narrative">{{ row[6] }}</p>
         </div>
+        {% endif %}
       </li>
       {% endfor %}
     </ol>

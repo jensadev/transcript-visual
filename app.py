@@ -1,7 +1,7 @@
 import argparse
 import csv
 from jinja2 import Environment, PackageLoader, select_autoescape
-from datetime import datetime
+from datetime import datetime, timedelta
 import os
 import rcssmin
 
@@ -22,7 +22,15 @@ with open(args.file, "r", encoding="utf-8") as file:
     reader = csv.reader(file)
     next(reader)
     # rendered_template = template.render({'rows': reader})
-    rows = [[datetime.strptime(row[0], "%H:%M")] + row[1:] for row in reader]
+    rows = []
+    current_hour = None
+    for row in reader:
+        time = datetime.strptime(row[0], '%H:%M')
+        if time.hour != current_hour:
+            # Insert a separator row with just the timestamp
+            rows.append([time, '', 'Separator'])
+            current_hour = time.hour
+        rows.append([time] + row[1:])
 
     with open("style.css", "r", encoding="utf-8") as file:
         css = file.read()
