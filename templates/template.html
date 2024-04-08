@@ -56,7 +56,7 @@
         </span>
         {% endif %}
         {% if row[2] and row[2] != "Separator" %}
-        <span class="type {% if row[2] == 'Fråga' %}question
+        <span class="type {% if row[2]|lower == 'fråga' %}question
           {% elif row[2] == 'Exekverar' %}run
           {% elif row[2] == 'Påstående' %}claim
           {% elif row[2] == 'Error' %}error

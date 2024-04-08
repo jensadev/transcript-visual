@@ -3,3 +3,4 @@ node_modules
 *.csv
 __pycache__
 output/*.html
+.vscode/settings.json

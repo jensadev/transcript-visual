@@ -23,13 +23,13 @@ with open(args.file, "r", encoding="utf-8") as file:
     next(reader)
     # rendered_template = template.render({'rows': reader})
     rows = []
-    current_hour = None
+    CURRENT_HOUR = None
     for row in reader:
         time = datetime.strptime(row[0], '%H:%M')
-        if time.hour != current_hour:
+        if time.hour != CURRENT_HOUR:
             # Insert a separator row with just the timestamp
             rows.append([time, '', 'Separator'])
-            current_hour = time.hour
+            CURRENT_HOUR = time.hour
         rows.append([time] + row[1:])
 
     with open("style.css", "r", encoding="utf-8") as file:
@@ -39,7 +39,6 @@ with open(args.file, "r", encoding="utf-8") as file:
         rendered_template = template.render(
             {"title": output_filename, "rows": rows, "style": minified_css}
         )
-
 
 with open(output_filename, "w", encoding="utf-8") as html_file:
     html_file.write(rendered_template)
