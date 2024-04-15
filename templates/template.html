@@ -48,10 +48,10 @@
       {% for row in rows %}
         <li class="{% if row[2] == 'Separator' %}separator{% endif %}">
         {% if row[2] == 'Separator' %}
-        <time>{{ row[0].strftime('%H:%M') }}</time>
+        <time>{{ row[0].strftime('%M:%S') }}</time>
         {% endif %}
         {% if row[1] %}
-        <span class="speaker-{{ row[1] }}">
+        <span class="speaker speaker-{{ row[1] }}">
           {{ row[1] }}
         </span>
         {% endif %}
@@ -64,7 +64,12 @@
         {% endif %}
         {% if row[2] != 'Separator' %}
         <div class="content">
-          <time>{{ row[0].strftime('%H:%M') }}</time>
+          <time>{{ row[0].strftime('%M:%S') }}</time>
+          {% if row[1] %}
+          <p>
+            Talare: {{ row[1] }}
+          </p>
+          {% endif %}
           <p class="expression">{{ row[3] }}</p>
           <p class="action">{{ row[4] }}</p>
           <p class="interpretation">{{ row[5] }}</p>

@@ -178,7 +178,7 @@ ol > li > * {
   transform: rotate(-90deg);
 }
 
-.speaker-1, .speaker-2 {
+.speaker {
   color: var(--color-light);
   padding: .2em .4em;
   border: var(--border);

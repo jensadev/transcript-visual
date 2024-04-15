@@ -23,13 +23,14 @@ with open(args.file, "r", encoding="utf-8") as file:
     next(reader)
     # rendered_template = template.render({'rows': reader})
     rows = []
-    CURRENT_HOUR = None
-    for row in reader:
-        time = datetime.strptime(row[0], '%H:%M')
-        if time.hour != CURRENT_HOUR:
+    CURRENT_MINUTE = None
+    for row in reader: # 00:00 MM:SS
+        time = datetime.strptime(row[0], '%M:%S')
+        if time.minute != CURRENT_MINUTE:
+            print(time)
             # Insert a separator row with just the timestamp
             rows.append([time, '', 'Separator'])
-            CURRENT_HOUR = time.hour
+            CURRENT_MINUTE = time.minute
         rows.append([time] + row[1:])
 
     with open("style.css", "r", encoding="utf-8") as file:
