@@ -10,6 +10,7 @@
 
 <body>
   <header>
+    <h2>Lathund</h2>
     <ul class="color-guide">
       <li>
         <div class="color-box" style="background-color: var(--color-speaker1);">
@@ -43,6 +44,15 @@
       </li>
     </ul>
   </header>
+  <aside>
+    <h2>Statistik</h2>
+    <ul>
+      <li>Fråga: {{ types['Fråga'] if 'Fråga' in types else 0 }}</li>
+      {% for speaker, count in speakers[:2] %}
+          <li>Talare: {{ speaker }}, antal: {{ count }}</li>
+      {% endfor %}
+    </ul>
+  </aside>
   <main>
     <ol class="timeline">
       {% for row in rows %}

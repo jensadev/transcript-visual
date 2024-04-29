@@ -53,10 +53,16 @@ header {
   left: 2vmin;
 }
 
+aside {
+  position: fixed;
+  top: 2vmin;
+  right: 2vmin;
+}
+
 .color-guide {
   list-style: none;
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
+  grid-template-columns: repeat(3, 1fr);
   gap: 1rem;
 }
 
@@ -183,13 +189,16 @@ ol > li > * {
   padding: .2em .4em;
   border: var(--border);
   margin-top: 1rem;
+  background-color: var(--color-dark);
 }
 
 .speaker-1 {
+  margin-top: .3em;
   background-color: var(--color-speaker1);
 }
 
 .speaker-2 {
+  margin-top: .6em;
   background-color: var(--color-speaker2);
 }
 
