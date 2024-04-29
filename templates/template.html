@@ -5,64 +5,68 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Document</title>
-  <style>{{ style | safe }}</style>
+  <style>{{style | safe}}
+  </style>
 </head>
 
 <body>
   <header>
-    <h2>Lathund</h2>
-    <ul class="color-guide">
-      <li>
-        <div class="color-box" style="background-color: var(--color-speaker1);">
-        </div>
-        <span>Talare 1</span>
-      </li>
-      <li>
-        <div class="color-box" style="background-color: var(--color-speaker2);">
-        </div>
-        <span>Talare 2</span>
-      </li>
-      <li>
-        <div class="color-box" style="background-color: var(--color-question);">
-        </div>
-        <span>Fråga</span>
-      </li>
-      <li>
-        <div class="color-box" style="background-color: var(--color-error);">
-        </div>
-        <span>Error</span>
-      </li>
-      <li>
-        <div class="color-box" style="background-color: var(--color-action);">
-        </div>
-        <span>Exekvera / Handling</span>
-      </li>
-      <li>
-        <div class="color-box" style="background-color: var(--color-narrative);">
-        </div>
-        <span>Påstående / Narrativ</span>
-      </li>
-    </ul>
+    <div>
+
+      <h2>Lathund</h2>
+      <ul class="color-guide">
+        <li>
+          <div class="color-box" style="background-color: var(--color-speaker1);">
+          </div>
+          <span>Talare 1</span>
+        </li>
+        <li>
+          <div class="color-box" style="background-color: var(--color-speaker2);">
+          </div>
+          <span>Talare 2</span>
+        </li>
+        <li>
+          <div class="color-box" style="background-color: var(--color-question);">
+          </div>
+          <span>Fråga</span>
+        </li>
+        <li>
+          <div class="color-box" style="background-color: var(--color-error);">
+          </div>
+          <span>Error</span>
+        </li>
+        <li>
+          <div class="color-box" style="background-color: var(--color-action);">
+          </div>
+          <span>Exekvera / Handling</span>
+        </li>
+        <li>
+          <div class="color-box" style="background-color: var(--color-narrative);">
+          </div>
+          <span>Påstående / Narrativ</span>
+        </li>
+      </ul>
+    </div>
+    <div>
+      <h2>Statistik</h2>
+      <ul>
+        <li>Fil skapad: {{ date }}</li>
+        <li>Antal frågor: {{ types['Fråga'] if 'Fråga' in types else 0 }}</li>
+        <li>Talare {{ speaker1[0] }}, antal: {{ speaker1[1] }}</li>
+        <li>Talare {{ speaker2[0] }}, antal: {{ speaker2[1] }}</li>
+      </ul>
+    </div>
   </header>
-  <aside>
-    <h2>Statistik</h2>
-    <ul>
-      <li>Fil skapad: {{ date }}</li>
-      <li>Fråga: {{ types['Fråga'] if 'Fråga' in types else 0 }}</li>
-      {% for speaker, count in speakers[:2] %}
-          <li>Talare: {{ speaker }}, antal: {{ count }}</li>
-      {% endfor %}
-    </ul>
-  </aside>
+
   <main>
     <ol class="timeline">
       {% for row in rows %}
-        <li class="{% if row[2] == 'Separator' %}separator{% endif %}">
+      <li {% if row[2] == 'Separator' %} class="separator" {% endif %}>
         {% if row[2] == 'Separator' %}
         <time>{{ row[0].strftime('%M:%S') }}</time>
         {% endif %}
         {% if row[1] %}
-        <span class="speaker speaker-{{ row[1] }}">
+        <span class="speaker speaker-{{ 1 if row[1] == speaker1[0] else 2 if row[1] == speaker2[0] else '' }}">
           {{ row[1] }}
         </span>
         {% endif %}

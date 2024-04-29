@@ -66,7 +66,8 @@ def render_template(filename: str, rows: list, speakers: dict, types: dict):
             "title": filename,
             "rows": rows,
             "style": minify_css("style.css"),
-            "speakers": speakers,
+            "speaker1": speakers[0],
+            "speaker2": speakers[1],
             "types": types,
             "date": datetime.now().strftime("%Y-%m-%d %H:%M:%S"),
         }

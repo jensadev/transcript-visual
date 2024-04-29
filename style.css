@@ -51,18 +51,15 @@ header {
   position: fixed;
   top: 2vmin;
   left: 2vmin;
-}
-
-aside {
-  position: fixed;
-  top: 2vmin;
-  right: 2vmin;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 2rem;
 }
 
 .color-guide {
   list-style: none;
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(2, 1fr);
   gap: 1rem;
 }
 
