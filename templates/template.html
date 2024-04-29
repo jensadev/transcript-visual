@@ -47,6 +47,7 @@
   <aside>
     <h2>Statistik</h2>
     <ul>
+      <li>Fil skapad: {{ date }}</li>
       <li>Fråga: {{ types['Fråga'] if 'Fråga' in types else 0 }}</li>
       {% for speaker, count in speakers[:2] %}
           <li>Talare: {{ speaker }}, antal: {{ count }}</li>
