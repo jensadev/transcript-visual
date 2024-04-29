@@ -104,11 +104,15 @@ ol > li {
   grid-template-areas: "top"
   "center"
   "bottom";
+  justify-items: center;
   height: 40vh;
   width: 2rem;
 }
 
 ol > li:hover .content {
+  display: block;
+}
+ol > li:focus .content {
   display: block;
 }
 
@@ -212,4 +216,8 @@ ol > li > * {
 .narrative {
   padding-left: .4em;
   border-left: 3px solid var(--color-narrative);
+}
+
+.timeline > li:focus {
+  outline: 2px solid var(--color-dark);
 }

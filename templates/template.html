@@ -61,7 +61,7 @@
   <main>
     <ol class="timeline">
       {% for row in rows %}
-      <li {% if row[2] == 'Separator' %} class="separator" {% endif %}>
+      <li {% if row[2] == 'Separator' %} class="separator" {% else %} tabindex="0" {% endif %}>
         {% if row[2] == 'Separator' %}
         <time>{{ row[0].strftime('%M:%S') }}</time>
         {% endif %}
@@ -71,11 +71,11 @@
         </span>
         {% endif %}
         {% if row[2] and row[2] != "Separator" %}
-        <span class="type {% if row[2]|lower == 'fråga' %}question
+        <p class="type {% if row[2]|lower == 'fråga' %}question
           {% elif row[2] == 'Exekverar' %}run
           {% elif row[2] == 'Påstående' %}claim
           {% elif row[2] == 'Error' %}error
-          {% endif %}">{{ row[2] }}</span>
+          {% endif %}">{{ row[2] }}</p>
         {% endif %}
         {% if row[2] != 'Separator' %}
         <div class="content">
